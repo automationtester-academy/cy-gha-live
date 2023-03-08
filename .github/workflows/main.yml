@@ -44,5 +44,20 @@ jobs:
         with:
           name: test-result
           path: "cypress/results"
+
+  go-release:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: launch release
+        run: echo "launch release"
+
+  notify-failure:
+    runs-on: ubuntu-latest
+    needs: test
+    if: failure()
+    steps:
+      - name: notify failure
+        run: echo "notify failure"
         
 
